@@ -1,9 +1,7 @@
-#[allow(unused_imports)]
 #[allow(unused_must_use)]
 mod dhke;
 use oneshot::channel;
-use std::thr
-
+use std::thread;
 fn main() {
         // Generate the public parameters prime (p) and generator (g) for both Alice and Bob
         let (prime, generator) = dhke::generate_shared_params();
@@ -25,24 +23,15 @@ fn main() {
         Alice's public key to Bob
          */
         let (alice, bob) = channel();
-        thread::spawn(move || {
-                alice.send(alice_keypair.pk);
-        });
-
-        let a = bob.recv().expect("Sender does not want to talk :(");
+        let a = async_channel(alice,bob, alice_keypair.pk);
         println!("A message (Alice's public key) from Alice to Bob: {}", a);
-
 
         /* create an async channel (single producer/single consumer) between Bob and Alice
            with Bob as sender and Alice as receiver using the crate oneshot and send
            Bob's public key to Alice
          */
         let (bob, alice) = channel();
-        thread::spawn(move || {
-                bob.send(bob_keypair.pk);
-        });
-
-        let b = alice.recv().expect("Sender does not want to talk :(");
+        let b = async_channel(bob,alice,bob_keypair.pk);
         println!("A message (Bob's public key) from Bob to Alice: {}", b);
 
         /*
@@ -67,4 +56,15 @@ fn main() {
         println!("Done.")
     }
 
+use  num_bigint::BigUint;
+use oneshot::*;
+// A function which uses oneshot channel to send a message from Alice to Bob and vice versa
+fn async_channel(sender: oneshot::Sender<BigUint>, receiver: oneshot::Receiver<BigUint>, pub_key: BigUint) -> BigUint{
+        thread::spawn(move || {
+                sender.send(pub_key);
+        });
 
+        let message = receiver.recv().expect("Sender does not want to talk :(");
+
+        return message;
+}
