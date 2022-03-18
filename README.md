@@ -14,19 +14,19 @@ Diffie-Hellman Key Exchange protocol with a toy example:
 1. Alice and Bob publicly agree to use a modulus p = 23 and generator g = 5 (which is a primitive root modulo 23).
 
 2. Alice chooses a secret integer x = 4, then sends Bob A = g^x mod p
-3. 
+
             A = 5^4 mod 23 = 4
             
 3. Bob chooses a secret integer y = 3, then sends Alice B = g^y mod p
-4. 
+
             B = 5^3 mod 23 = 10
             
 4. Alice computes a = B^x mod p
-5. 
+ 
             a = 10^4 mod 23 = 18
             
 5. Bob computes b = A^y mod p
-6. 
+
             b = 4^3 mod 23 = 18
             
 6. Alice and Bob now share a secret (the number 18).
