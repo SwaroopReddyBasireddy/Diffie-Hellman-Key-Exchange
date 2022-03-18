@@ -1,4 +1,4 @@
-# diffie_hellman_key_exchange_test//lib.rs
+# diffie_hellman_key_exchange_test/lib.rs
 Use rand = "0.8.5", glass_pumpkin = "1.2.0", num-bigint = { version = "0.4", features = ["rand"] } as dependencies
 glass_pumpkin is used for safe primes and num-bigint is used for modular arithmetic.
 
