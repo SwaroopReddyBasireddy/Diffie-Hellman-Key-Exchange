@@ -1,8 +1,8 @@
-# Diffie-Hellman-Key-Exchange/diffie_hellman_key_exchange_test//lib.rs
+# diffie_hellman_key_exchange_test//lib.rs
 Use rand = "0.8.5", glass_pumpkin = "1.2.0", num-bigint = { version = "0.4", features = ["rand"] } as dependencies
 glass_pumpkin is used for safe primes and num-bigint is used for modular arithmetic.
 
-Key Generation protocol: To generate the public parameters called prime modulus (p) and generator (g)of datatype BigUint which is a member of the module "num_bigint". p is a safe prime such the q = (p-1)/2is also a prime generated from num_bigint::BigUint. 
+Key Generation protocol: To generate the public parameters called prime modulus (p) and generator (g)of datatype BigUint which is a member of the module "num_bigint". p is a safe prime such that q = (p-1)/2is also a prime generated from num_bigint::BigUint. 
 
 Use a generator with a fixed value of 2 and a random safe prime , because the random self-reducibility ofthe discrete logarithm problem a small g is equally secure as any other generator of the same group.
 
@@ -29,6 +29,6 @@ Diffie-Hellman Key Exchange protocol with a toy example:
 Both Alice and Bob have arrived at the same values because under mod p,
 
 
-# Diffie-Hellman-Key-Exchange/dhke_async_channel_oneshot/main.rs
+# dhke_async_channel_oneshot/main.rs
 
 
