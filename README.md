@@ -34,11 +34,13 @@ Both Alice and Bob have arrived at the same values because under mod p,
 In Oneshot (single producer/single consumer) channel, each channel instance can only transport a single message. Here is an example of how to use oneshot (https://docs.rs/oneshot/latest/oneshot/)
 
 let (sender, receiver) = oneshot::channel();
+
 thread::spawn(move || {
     sender.send("Hello from worker thread!");
 });
 
 let message = receiver.recv().expect("Worker thread does not want to talk :(");
+
 println!("A message from a different thread: {}", message);
 
 
