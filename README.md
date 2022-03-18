@@ -12,8 +12,8 @@ To avoid these vulnerabilities, the Logjam authors recommend use of the order, p
 
 Diffie-Hellman Key Exchange protocol:
 1. Alice and Bob publicly agree to use a modulus p = 23 and generator g = 5 (which is a primitive root modulo 23).
-2. 
-3. Alice chooses a secret integer x = 4, then sends Bob A = g^x mod p
+
+2. Alice chooses a secret integer x = 4, then sends Bob A = g^x mod p
             A = 5^4 mod 23 = 4
             
 3. Bob chooses a secret integer y = 3, then sends Alice B = g^y mod p
